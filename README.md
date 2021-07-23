@@ -49,6 +49,19 @@ Output:
 
 `[b]Example text using strong[/b]`
 
+## Adding a mark
+```bash
+use Litlife\JsonToBBCode\Marks\Italic;
+
+$bbCodeString = (new Renderer())->addMark(Italic::class)->render($jsonArray);
+```
+
+## Adding a node
+```bash
+use Litlife\JsonToBBCode\Nodes\Blockquote;
+
+$bbCodeString = (new Renderer())->addNode(Blockquote::class)->render($jsonArray);
+```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
