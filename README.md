@@ -63,5 +63,9 @@ use Litlife\JsonToBBCode\Nodes\Blockquote;
 $bbCodeString = (new Renderer())->addNode(Blockquote::class)->render($jsonArray);
 ```
 
+## Testing
+```bash
+composer test
+```
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

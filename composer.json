@@ -22,5 +22,8 @@
   },
   "require": {
     "ext-json": "*"
+  },
+  "scripts": {
+    "test": "phpunit"
   }
 }
