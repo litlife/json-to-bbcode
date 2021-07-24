@@ -4,7 +4,7 @@ namespace Litlife\JsonToBBCode\Nodes;
 
 class Node
 {
-    public array $proseMirrorJson;
+    public $proseMirrorJson;
 
     public function __construct(array $node)
     {

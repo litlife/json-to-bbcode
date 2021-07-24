@@ -4,7 +4,7 @@ namespace Litlife\JsonToBBCode\Nodes;
 
 class Spoiler extends Node
 {
-    private string $title = '';
+    private $title = '';
 
     public function matching(): bool
     {

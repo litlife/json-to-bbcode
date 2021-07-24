@@ -4,7 +4,7 @@ namespace Litlife\JsonToBBCode\Marks;
 
 class Link extends Mark
 {
-    private string $href;
+    private $href;
 
     public function matching(): bool
     {

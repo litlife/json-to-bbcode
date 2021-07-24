@@ -6,7 +6,7 @@ class Image extends Node
 {
     private $width;
     private $height;
-    private string $src;
+    private $src;
 
     public function matching(): bool
     {

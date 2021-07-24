@@ -4,7 +4,7 @@ namespace Litlife\JsonToBBCode\Attrs;
 
 class Attr
 {
-    public array $proseMirrorJson;
+    public $proseMirrorJson;
 
     public function __construct(array $node)
     {

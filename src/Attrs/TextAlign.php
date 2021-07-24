@@ -4,7 +4,7 @@ namespace Litlife\JsonToBBCode\Attrs;
 
 class TextAlign extends Attr
 {
-    public string $align;
+    public $align;
 
     public function matching(): bool
     {

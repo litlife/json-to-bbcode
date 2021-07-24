@@ -4,13 +4,13 @@ namespace Litlife\JsonToBBCode;
 
 class Renderer
 {
-    protected array $marks = [
+    protected $marks = [
         Marks\Bold::class,
         Marks\Italic::class,
         Marks\Strike::class,
     ];
 
-    protected array $nodes = [
+    protected $nodes = [
         Nodes\Doc::class,
         Nodes\Paragraph::class,
         Nodes\Text::class,
@@ -18,7 +18,7 @@ class Renderer
         Nodes\Image::class,
     ];
 
-    protected array $attrs = [
+    protected $attrs = [
         Attrs\TextAlign::class
     ];
 

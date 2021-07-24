@@ -4,7 +4,7 @@ namespace Litlife\JsonToBBCode\Marks;
 
 class Mark
 {
-    public array $proseMirrorJson;
+    public $proseMirrorJson;
 
     public function __construct(array $node)
     {
