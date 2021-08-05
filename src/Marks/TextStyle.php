@@ -20,10 +20,12 @@ class TextStyle extends Mark
                 if (array_key_exists($name, $attrs)) {
                     switch ($name) {
                         case 'fontFamily':
-                            $bb = '[font="' . $value . '"]' . $bb . '[/font]';
+                            if (!empty($value))
+                                $bb = '[font="' . $value . '"]' . $bb . '[/font]';
                             break;
                         case 'fontColor':
-                            $bb = '[color=' . $value . ']' . $bb . '[/color]';
+                            if (!empty($value))
+                                $bb = '[color=' . $value . ']' . $bb . '[/color]';
                             break;
                     }
                 }

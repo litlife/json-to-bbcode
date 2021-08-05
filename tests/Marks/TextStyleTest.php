@@ -75,4 +75,59 @@ EOF;
 
         $this->assertEquals($bb, (new Renderer())->clearMarks()->clearNodes()->clearAttrs()->addMark(TextStyle::class)->render($jsonArray));
     }
+
+    public function testEmptyFontColorOrFont()
+    {
+        $bb = '[font="Courier New"]какого[/font] [color=#3333ff]вообразитъ[/color]';
+
+        $jsonString = <<<EOF
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontFamily": "Courier New",
+                "fontColor": null
+              }
+            }
+          ],
+          "text": "какого"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontFamily": "",
+                "fontColor": "#3333ff"
+              }
+            }
+          ],
+          "text": "вообразитъ"
+        }
+      ]
+    }
+  ]
+}
+EOF;
+
+        $jsonArray = json_decode($jsonString, true);
+
+        $this->assertEquals($bb, (new Renderer())->clearMarks()->clearNodes()->clearAttrs()->addMark(TextStyle::class)->render($jsonArray));
+    }
 }
