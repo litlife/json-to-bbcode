@@ -1,63 +1,21 @@
 <?php
 
+namespace Litlife\JsonToBBCode\Tests\Marks;
+
+use Litlife\JsonToBBCode\Attrs\TextAlign;
 use Litlife\JsonToBBCode\Nodes\Paragraph;
 use Litlife\JsonToBBCode\Renderer;
 use PHPUnit\Framework\TestCase;
 
-class ParagraphTest extends TestCase
+class TextAlignWithParagraphTest extends TestCase
 {
     public function test()
     {
         $bb = <<<EOF
-test
-test2
+test 1
+test 2
 
 EOF;
-
-
-        $jsonString = <<<EOF
-    {
-  "type": "doc",
-  "content": [
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "test"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "test2"
-        }
-      ]
-    }
-  ]
-}
-EOF;
-
-        $jsonArray = json_decode($jsonString, true);
-
-        $this->assertEquals($bb, (new Renderer())
-            ->clearNodes()
-            ->addNode(Paragraph::class)
-            ->render($jsonArray));
-    }
-
-    public function test2()
-    {
-        $bb = <<<EOF
-text 1
-
-text 2
-
-EOF;
-
 
         $jsonString = <<<EOF
 {
@@ -71,7 +29,57 @@ EOF;
       "content": [
         {
           "type": "text",
-          "text": "text 1"
+          "text": "test 1"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "test 2"
+        }
+      ]
+    }
+  ]
+}
+EOF;
+
+        $jsonArray = json_decode($jsonString, true);
+
+        $this->assertEquals($bb, (new Renderer())->clearMarks()->clearNodes()->clearAttrs()
+            ->addAttr(Paragraph::class)
+            ->addAttr(TextAlign::class)->render($jsonArray));
+    }
+
+    public function test2()
+    {
+        $bb = <<<EOF
+text1
+
+text2
+ 
+text3
+
+EOF;
+
+        $jsonString = <<<EOF
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "text1"
         }
       ]
     },
@@ -89,7 +97,31 @@ EOF;
       "content": [
         {
           "type": "text",
-          "text": "text 2"
+          "text": "text2"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": " "
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "text3"
         }
       ]
     }
@@ -99,11 +131,8 @@ EOF;
 
         $jsonArray = json_decode($jsonString, true);
 
-        $this->assertEquals($bb, (new Renderer())
-            ->clearNodes()
-            ->clearAttrs()
-            ->addNode(Paragraph::class)
-            ->render($jsonArray));
+        $this->assertEquals($bb, (new Renderer())->clearMarks()->clearNodes()->clearAttrs()
+            ->addAttr(Paragraph::class)
+            ->addAttr(TextAlign::class)->render($jsonArray));
     }
-
 }
