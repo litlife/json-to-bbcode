@@ -130,4 +130,42 @@ EOF;
 
         $this->assertEquals($bb, (new Renderer())->clearMarks()->clearNodes()->clearAttrs()->addMark(TextStyle::class)->render($jsonArray));
     }
+
+    public function testNullFontColor()
+    {
+        $bb = '[font="Arial Black"]Текст[/font]';
+
+        $jsonString = <<<EOF
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontFamily": "Arial Black",
+                "fontColor": null
+              }
+            }
+          ],
+          "text": "Текст"
+        }
+      ]
+    }
+  ]
+}
+EOF;
+
+        $jsonArray = json_decode($jsonString, true);
+
+        $this->assertEquals($bb, (new Renderer())->clearMarks()->clearNodes()->clearAttrs()->addMark(TextStyle::class)->render($jsonArray));
+    }
 }
