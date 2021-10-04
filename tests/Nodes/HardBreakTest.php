@@ -71,13 +71,16 @@ EOF;
 
         $jsonArray = json_decode($jsonString, true);
 
-        $this->assertEquals($bb, (new Renderer())
+        $actual = (new Renderer())
             ->clearNodes()
             ->clearMarks()
             ->addNode(Blockquote::class)
             ->addNode(Paragraph::class)
             ->addNode(HardBreak::class)
-            ->render($jsonArray)
-        );
+            ->render($jsonArray);
+
+        $actual = str_replace( "\r\n", "\n", $actual);
+
+        $this->assertEquals($bb, $actual);
     }
 }
